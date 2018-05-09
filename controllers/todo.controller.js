@@ -10,7 +10,7 @@ module.exports = server => {
     });
 
     server.get('/todos/:id', (req, res) => {
-        const todo = todoRepository.get(req.params.id);
+        const todo = todoRepository.get(+req.params.id);
         res.send(todo ? todo : new errs.NotFoundError(`Datensatz mit der ID ${req.params.id} nicht gefunden.`))
     });
 
