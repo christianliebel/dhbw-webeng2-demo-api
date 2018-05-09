@@ -1,21 +1,31 @@
 module.exports = class TodoRepository {
     constructor() {
-        this._store = new Map();
+        this._userStores = new Map();
     }
 
-    getAll() {
-        return Array.from(this._store.values());
+    getAll(user) {
+        return Array.from(this._getStore(user).values());
     }
 
-    get(id) {
-        return this._store.get(id);
+    get(user, id) {
+        return this._getStore(user).get(id);
     }
 
-    createOrUpdate(todo) {
-        this._store.set(todo.id, todo);
+    createOrUpdate(user, todo) {
+        this._getStore(user).set(todo.id, todo);
     }
 
-    delete(id) {
-        this._store.delete(id);
+    delete(user, id) {
+        this._getStore(user).delete(id);
+    }
+
+    _getStore(user) {
+        let store = this._userStores.get(user);
+        if (!store) {
+            store = new Map();
+            this._userStores.set(user, store);
+        }
+
+        return store;
     }
 };

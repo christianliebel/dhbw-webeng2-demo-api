@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/christianliebel/dhbw-webeng2-demo-api#readme",
   "dependencies": {
+    "jwks-rsa": "^1.2.1",
     "restify": "^7.1.1",
-    "restify-errors": "^6.0.0"
+    "restify-errors": "^6.0.0",
+    "restify-jwt-community": "^1.0.4",
+    "restify-logger": "^2.0.1"
   }
 }
