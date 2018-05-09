@@ -1,0 +1,23 @@
+{
+  "name": "dhbw-webeng2-demo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christianliebel/dhbw-webeng2-demo-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christianliebel/dhbw-webeng2-demo-api/issues"
+  },
+  "homepage": "https://github.com/christianliebel/dhbw-webeng2-demo-api#readme",
+  "dependencies": {
+    "restify": "^7.1.1",
+    "restify-errors": "^6.0.0"
+  }
+}
