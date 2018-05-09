@@ -15,12 +15,30 @@ module.exports = server => {
     });
 
     server.post('/todos', (req, res) => {
-        const todo = new Todo(todoId++, req.body.name, req.body.done);
+        if (!req.body.name)
+            return res.send(new errs.BadRequestError('No name for new item supplied.'));
+
+        if (typeof req.body.name !== 'string')
+            return res.send(new errs.BadRequestError('name should be a string.'));
+        if (req.body.done !== void 0 && typeof req.body.done !== 'boolean')
+            return res.send(new errs.BadRequestError('done should be a boolean.'));
+
+        const todo = new Todo(todoId++, req.body.name, req.body.done || false);
         todoRepository.createOrUpdate(req.user.sub, todo);
         res.send(201, todo);
     });
 
     server.put('/todos/:id', (req, res) => {
+        if (!req.body.name)
+            return res.send(new errs.BadRequestError('No name for item supplied.'));
+        if (req.body.done === void 0)
+            return res.send(new errs.BadRequestError('No done flag for item supplied.'));
+
+        if (typeof req.body.name !== 'string')
+            return res.send(new errs.BadRequestError('name should be a string.'));
+        if (typeof req.body.done !== 'boolean')
+            return res.send(new errs.BadRequestError('done should be a boolean.'));
+
         const todo = new Todo(+req.params.id, req.body.name, req.body.done);
         todoRepository.createOrUpdate(req.user.sub, todo);
         res.send(204);
