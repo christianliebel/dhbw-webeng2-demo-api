@@ -14,17 +14,11 @@ server.use(cors.actual);
 
 server.use(restify.plugins.bodyParser());
 server.use(logger('combined'));
-server.use(jwt({
-    secret: jwks.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: ''
-    }),
-    audience: '',
-    issuer: '',
-    algorithms: ['RS256']
-}));
+
+server.use((req, res, next) => {
+    req.user = { sub: 'test '};
+    next();
+});
 
 require('./controllers/todo.controller')(server);
 
