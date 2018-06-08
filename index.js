@@ -28,4 +28,4 @@ server.use(jwt({
 
 require('./controllers/todo.controller')(server);
 
-server.listen(8080, () => console.log(`${server.name} listening at ${server.url}`));
+server.listen(process.env.port || 8080, () => console.log(`${server.name} listening at ${server.url}`));
